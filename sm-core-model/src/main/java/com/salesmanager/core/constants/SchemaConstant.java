@@ -62,13 +62,14 @@ public class SchemaConstant {
 	 * Currency codes with name
 	 */
 	public static final HashMap<String, String> CURRENCY_MAP = new HashMap<String, String>();
+	static String dollar = "US Dollar";
 	
 	static {
 		CURRENCY_MAP.put("AFN", "Afghani");
 		CURRENCY_MAP.put("EUR", "Euro");
 		CURRENCY_MAP.put("ALL", "Lek");
 		CURRENCY_MAP.put("DZD", "Algerian Dinar");
-		CURRENCY_MAP.put("USD", "US Dollar");
+		CURRENCY_MAP.put("USD", dollar);
 		CURRENCY_MAP.put("AOA", "Kwanza");
 		CURRENCY_MAP.put("XCD", "East Caribbean Dollar");
 		CURRENCY_MAP.put("ARS", "Argentine Peso");
@@ -213,7 +214,7 @@ public class SchemaConstant {
 		CURRENCY_MAP.put("PHP", "Philippine Peso");
 		CURRENCY_MAP.put("NZD", "New Zealand Dollar");
 		CURRENCY_MAP.put("PLN", "Zloty");
-		CURRENCY_MAP.put("USD", "US Dollar");
+		CURRENCY_MAP.put("USD", dollar);
 		CURRENCY_MAP.put("QAR", "Qatari Rial");
 		CURRENCY_MAP.put("RON", "New Romanian Leu");
 		CURRENCY_MAP.put("RUB", "Russian Ruble");
@@ -248,7 +249,7 @@ public class SchemaConstant {
 		CURRENCY_MAP.put("TJS", "Somoni");
 		CURRENCY_MAP.put("TZS", "Tanzanian Shilling");
 		CURRENCY_MAP.put("THB", "Baht");
-		CURRENCY_MAP.put("USD", "US Dollar");
+		CURRENCY_MAP.put("USD", dollar);
 		CURRENCY_MAP.put("XOF", "CFA Franc BCEAO");
 		CURRENCY_MAP.put("NZD", "New Zealand Dollar");
 		CURRENCY_MAP.put("TTD", "Trinidad and Tobago Dollar");
@@ -266,7 +267,7 @@ public class SchemaConstant {
 		CURRENCY_MAP.put("VUV", "Vatu");
 		CURRENCY_MAP.put("VEF", "Bolivar Fuerte");
 		CURRENCY_MAP.put("VND", "Dong");
-		CURRENCY_MAP.put("USD", "US Dollar");
+		CURRENCY_MAP.put("USD", dollar);
 		CURRENCY_MAP.put("XPF", "CFP Franc");
 		CURRENCY_MAP.put("MAD", "Moroccan Dirham");
 		CURRENCY_MAP.put("YER", "Yemeni Rial");
