@@ -75,38 +75,12 @@ public class CustomShippingQuoteRules implements ShippingQuoteModule {
 			return null;
 		}
 
-		Double distance = null;
-		
-		if(quote!=null) {
-			//look if distance has been calculated
-			if(quote.getQuoteInformations()!=null) {
-				if(quote.getQuoteInformations().containsKey(Constants.DISTANCE_KEY)) {
-					distance = (Double)quote.getQuoteInformations().get(Constants.DISTANCE_KEY);
-				}
-			}
-		}
-		
-		//calculate volume (L x W x H)
-		Double volume = null;
-		Double weight = 0D;
-		Double size = null;
-		//calculate weight
-		for(PackageDetails pack : packages) {
-			weight = weight + pack.getShippingWeight();
-			Double tmpVolume = pack.getShippingHeight() * pack.getShippingLength() * pack.getShippingWidth();
-			if(volume == null || tmpVolume > volume) { //take the largest volume
-				volume = tmpVolume;
-			} 
-			//largest size
-			List<Double> sizeList = new ArrayList<Double>();
-			sizeList.add(pack.getShippingHeight());
-			sizeList.add(pack.getShippingWidth());
-			sizeList.add(pack.getShippingLength());
-			Double maxSize = Collections.max(sizeList);
-			if(size==null || maxSize > size) {
-				size = maxSize;
-			}
-		}
+		ShippingUtils.ShippingStats stats = ShippingUtils.calculateStats(quote, packages);
+		Double distance = stats.distance;
+		Double volume = stats.volume;
+		Double weight = stats.weight;
+		Double size = stats.size;
+
 		
 		//Build a ShippingInputParameters
 		ShippingInputParameters inputParameters = new ShippingInputParameters();

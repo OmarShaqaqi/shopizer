@@ -217,6 +217,11 @@ public class Quote extends SalesManagerEntity<Long, Quote> {
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
 	}
+
+    public Object getQuoteInformations() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getQuoteInformations'");
+    }
 	
 
 }
