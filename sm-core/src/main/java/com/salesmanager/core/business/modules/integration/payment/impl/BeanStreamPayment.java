@@ -54,6 +54,23 @@ public class BeanStreamPayment implements PaymentModule {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(BeanStreamPayment.class);
 
+	public static void handleIntegrationException(Exception e, HttpURLConnection conn) throws IntegrationException {
+		if (e instanceof IntegrationException)
+			throw (IntegrationException) e;
+		throw new IntegrationException("Error while processing BeanStream transaction", e);
+	}
+	
+	public static void safeDisconnect(HttpURLConnection conn) {
+		if (conn != null) {
+			try {
+				conn.disconnect();
+			} catch (Exception ignore) {
+				// Optional: log
+			}
+		}
+	}
+	
+
 	@Override
 	public Transaction initTransaction(MerchantStore store, Customer customer,
 			BigDecimal amount, Payment payment,
@@ -216,20 +233,10 @@ public class BeanStreamPayment implements PaymentModule {
 			
 		} catch(Exception e) {
 			
-			if(e instanceof IntegrationException)
-				throw (IntegrationException)e;
-			throw new IntegrationException("Error while processing BeanStream transaction",e);
+			handleIntegrationException(e, conn);
 
 		} finally {
-			
-			
-			if (conn != null) {
-				try {
-					conn.disconnect();
-				} catch (Exception ignore) {
-					// TODO: handle exception
-				}
-			}
+			safeDisconnect(conn);
 		}
 		
 		
@@ -629,18 +636,10 @@ public class BeanStreamPayment implements PaymentModule {
 			
 		} catch(Exception e) {
 			
-			if(e instanceof IntegrationException)
-				throw (IntegrationException)e;
-			throw new IntegrationException("Error while processing BeanStream transaction",e);
+			handleIntegrationException(e, conn);
 
 		} finally {
-			
-			
-			if (conn != null) {
-				try {
-					conn.disconnect();
-				} catch (Exception ignore) {}
-			}
+			safeDisconnect(conn);
 		}
 
 	}

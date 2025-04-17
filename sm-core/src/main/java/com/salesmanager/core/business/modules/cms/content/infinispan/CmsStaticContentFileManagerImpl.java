@@ -47,7 +47,7 @@ public class CmsStaticContentFileManagerImpl
 	private static final Logger LOGGER = LoggerFactory.getLogger(CmsStaticContentFileManagerImpl.class);
 	private static CmsStaticContentFileManagerImpl fileManager = null;
 	private static final String ROOT_NAME = "static-merchant-";
-	private String error = "Unable to find cacheManager.getTreeCache() in Infinispan..";
+	private String error = "";
 
 	private String rootName = ROOT_NAME;
 
@@ -110,7 +110,7 @@ public class CmsStaticContentFileManagerImpl
 	public void addFile(final String merchantStoreCode, Optional<String>path, final InputContentFile inputStaticContentData)
 			throws ServiceException {
 		if (cacheManager.getTreeCache() == null) {
-			LOGGER.error(error);
+			LOGGER.error("Unable to find cacheManager.getTreeCache() in Infinispan..");
 			throw new ServiceException(
 					"CmsStaticContentFileManagerInfinispanImpl has a null cacheManager.getTreeCache()");
 		}
@@ -158,7 +158,7 @@ public class CmsStaticContentFileManagerImpl
 	public void addFiles(final String merchantStoreCode, Optional<String> path, final List<InputContentFile> inputStaticContentDataList)
 			throws ServiceException {
 		if (cacheManager.getTreeCache() == null) {
-			LOGGER.error(error);
+			LOGGER.error("Unable to find cacheManager.getTreeCache() in Infinispan..");
 			throw new ServiceException(
 					"CmsStaticContentFileManagerInfinispanImpl has a null cacheManager.getTreeCache()");
 		}
@@ -309,7 +309,7 @@ public class CmsStaticContentFileManagerImpl
 
 		LOGGER.info("Removing all images for {} merchant ", merchantStoreCode);
 		if (cacheManager.getTreeCache() == null) {
-			LOGGER.error(error);
+			LOGGER.error("Unable to find cacheManager.getTreeCache() in Infinispan..");
 			throw new ServiceException("CmsImageFileManagerInfinispan has a null cacheManager.getTreeCache()");
 		}
 
